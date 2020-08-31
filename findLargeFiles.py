@@ -35,11 +35,24 @@ def absoluteFilePaths(directory):
 print(list(absoluteFilePaths(Dir)))
 
 for filename in list(absoluteFilePaths(Dir)):
-    print(str(os.stat(filename).st_size) + " bytes")
+    # print(str(os.stat(filename).st_size) + " bytes")
 
-# TODO: Make a dictionary of File/File Size
+    # if file is larger than threshold
+    try:
+        if os.stat(filename).st_size > minFileSizeBytes:
+            filesOfACertainSize[filename] = os.stat(filename).st_size / MEGABYTE
+    except:
+        FileNotFoundError
+
+
+print(filesOfACertainSize)
 
 # TODO: Read back found files.
 
+print ("File: ")
+for i in filesOfACertainSize :
+    print(f"File: {i}".ljust(100) + "   Size: " + str("{:.2f}".format(filesOfACertainSize[i])) + " mb")
+
 # TODO: Optional (ask if you would like to delete file one by one)
+
 
