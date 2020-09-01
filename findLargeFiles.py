@@ -54,5 +54,5 @@ for i in filesOfACertainSize :
     print(f"File: {i}".ljust(100) + "   Size: " + str("{:.2f}".format(filesOfACertainSize[i])) + " mb")
 
 # TODO: Optional (ask if you would like to delete file one by one)
-
-
+print("Would you like to remove any of these files?")
+deleteFilesAnswer = input()
