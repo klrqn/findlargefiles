@@ -5,6 +5,7 @@
 import pyinputplus as pyip
 from pathlib import Path
 import os
+import send2trash
 
 
 MEGABYTE = 1048576
@@ -32,7 +33,7 @@ def absoluteFilePaths(directory):
         for f in filenames:
             yield os.path.abspath(os.path.join(dirpath, f))
 
-print(list(absoluteFilePaths(Dir)))
+# print(list(absoluteFilePaths(Dir)))
 
 for filename in list(absoluteFilePaths(Dir)):
     # print(str(os.stat(filename).st_size) + " bytes")
@@ -49,10 +50,16 @@ print(filesOfACertainSize)
 
 # TODO: Read back found files.
 
-print ("File: ")
+count = 0
 for i in filesOfACertainSize :
-    print(f"File: {i}".ljust(100) + "   Size: " + str("{:.2f}".format(filesOfACertainSize[i])) + " mb")
+    count += 1
+    print(f"[{count}] File: {i}".ljust(100) + "   Size: " + str("{:.2f}".format(filesOfACertainSize[i])) + " mb")
 
 # TODO: Optional (ask if you would like to delete file one by one)
 print("Would you like to remove any of these files?")
-deleteFilesAnswer = input()
+deleteFilesAnswer = str.lower(input())
+if deleteFilesAnswer == 'yes':
+    print("which ones?:  (use file number, separate with a',')")
+    filesToDelete = input()
+    print(filesToDelete)
+
