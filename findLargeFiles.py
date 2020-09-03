@@ -45,21 +45,31 @@ for filename in list(absoluteFilePaths(Dir)):
     except:
         FileNotFoundError
 
+#Read back found files.
 
-print(filesOfACertainSize)
-
-# TODO: Read back found files.
-
+# def iterateDict(d):
 count = 0
 for i in filesOfACertainSize :
     count += 1
-    print(f"[{count}] File: {i}".ljust(100) + "   Size: " + str("{:.2f}".format(filesOfACertainSize[i])) + " mb")
+    print(f"[{count}] [{i}] File: {i}".ljust(100) + "   Size: " + str("{:.2f}".format(filesOfACertainSize[i])) + " mb")
 
-# TODO: Optional (ask if you would like to delete file one by one)
+# Optional (ask if you would like to delete file one by one)
 print("Would you like to remove any of these files?")
 deleteFilesAnswer = str.lower(input())
 if deleteFilesAnswer == 'yes':
     print("which ones?:  (use file number, separate with a',')")
-    filesToDelete = input()
+    filesToDelete = input().split(',')
+    # filesToDelete = filesToDelete.split(',')
     print(filesToDelete)
 
+count = 0
+for i in filesOfACertainSize:
+    count += 1
+    print(filesToDelete, 'ok', i)
+    if str(count) in filesToDelete:
+        print(count, filesToDelete)
+        # send2trash.send2trash(i)
+        print(f"I am sending this file: {i} to the trash")
+
+# TODO: BUG: Only deleting the first instance of requested 'files to delete'
+# line 69 is only executing the first time.
